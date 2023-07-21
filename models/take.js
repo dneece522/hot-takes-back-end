@@ -2,6 +2,17 @@ import mongoose from "mongoose"
 
 const Schema = mongoose.Schema
 
+const ratioSchema = new Schema(
+  {
+    text: {
+      type: String,
+      required: true
+    },
+    author: { type: Schema.Types.ObjectId, ref: 'Profile' }
+  },
+  { timestamps: true }
+)
+
 const takeSchema = new Schema(
   {
     title: {
@@ -17,6 +28,7 @@ const takeSchema = new Schema(
       required: true,
       enum: ['NFL', 'NCAAF', 'NBA', 'NCAAM', 'NCAAW', 'WNBA', 'MLB', 'CWS', 'WCWS', 'NHL', 'MLS', 'Boxing', 'UFC'],
     },
+    ratios: [ratioSchema],
     author: { type: Schema.Types.ObjectId, ref: 'Profile' }
   },
   { timestamps: true }
